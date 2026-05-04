@@ -2,6 +2,7 @@
 -- default config simply makes a timer
 local defaultConfig = {
     Interval = 1,
+    Increment = 0.1,
     CurrentTick = 0,
     CountingUp = true,
     AutoStart = false,
@@ -29,7 +30,7 @@ function TimeManager.new(config)
                 break
             else
                 if self.Started then
-                    self.CurrentTick = self.CurrentTick + (self.CountingUp and 1 or -1)
+                    self.CurrentTick = self.CurrentTick + (self.CountingUp and self.Increment or -self.Increment)
 
                     if self.OnTick then self.OnTick(self.CurrentTick) end
 
