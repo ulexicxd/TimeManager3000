@@ -35,7 +35,7 @@ function TimeManager.new(config)
                     if self.OnTick then self.OnTick(self.CurrentTick) end
 
                     if self.TargetTick then
-                        if self.CurrentTick == self.TargetTick then
+                        if (self.CurrentTick >= self.TargetTick and self.CountingUp) or (self.CurrentTick <= self.TargetTick and not self.CountingUp) then
                             self:Stop()
                             if self.OnEnd  then self.OnEnd(self.CurrentTick)  end
                             self.Ended = true
